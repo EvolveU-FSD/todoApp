@@ -1,8 +1,29 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import TodoForm from "./todo-form";
 
 function App() {
+  const [pageName, setPageName] = useState("List");
+
+  return (
+    <div className="page">
+      <header className="header">
+        <nav className="nav">
+          <button onClick={() => setPageName("List")}>List</button>
+          <button onClick={() => setPageName("Form")}>Form</button>
+        </nav>
+        <h1>My Todo {pageName}</h1>
+      </header>
+      {pageName === "List" ? <TodoList /> : <TodoForm />}
+    </div>
+  );
+}
+
+export default App;
+
+function TodoList() {
   const [todos, setTodos] = useState([]);
+
   useEffect(() => {
     const fetchTodos = async () => {
       const response = await fetch("/api");
@@ -13,10 +34,7 @@ function App() {
     fetchTodos();
   }, []);
   return (
-    <div className="page">
-      <header className="header">
-        <h1>My Todo List </h1>
-      </header>
+    <>
       <main>
         <ul>
           {todos.map((todo) => (
@@ -39,8 +57,6 @@ function App() {
           ))}
         </ul>
       </main>
-    </div>
+    </>
   );
 }
-
-export default App;
