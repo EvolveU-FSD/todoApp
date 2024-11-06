@@ -5,8 +5,8 @@ dotenv.config();
 mongoose.connect(process.env.MONGO_URI);
 const todoSchema = mongoose.Schema({
   title: { type: String, required: true },
-  done: Boolean,
-  dateComplete: Date,
+  done: { type: Boolean, default: false },
+  dateComplete: { type: Date },
 });
 const Todos = mongoose.model("Todos", todoSchema);
 module.exports = { Todos, mongoose };
