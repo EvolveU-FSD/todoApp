@@ -9,7 +9,7 @@ const TodoForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // send post request to "/api" with the task in the body as the title
-    const response = await axios.post("/api", { title });
+    const response = await axios.post("/api/todos", { title });
     const data = response.data;
     console.log("data", data);
   };

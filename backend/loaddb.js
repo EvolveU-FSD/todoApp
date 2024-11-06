@@ -1,4 +1,4 @@
-const { createTodo } = require("./todoController");
+const { createTodo } = require("./models/todoModel");
 
 for (let i = 0; i < 10; i++) {
   createTodo({
